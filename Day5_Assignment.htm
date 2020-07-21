@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <section>
+        <div>
+            <h3>Question 1</h3>
+            <p>
+                Write a program which does the following things:
+                1. Takes a positive number from the user.
+                2. Makes an array of numbers till the number given by user
+                3. Use higher order function to filter the odd numbers
+                4. Generate and array of the cubes of the filtered numbers
+            </p>
+            <input type="number" id="userFields">
+            <button onclick="makesArray();">Add to Array</button>
+            <pre>
+                <code>
+                    //1.1
+                    let dataUser = [-5, -1, 0, 1, 5, 8, 9, 10];
+                    let Positive = dataUser.filter((el) => el > 0);
+                    console.log(Positive);
+                    //1.2
+                    let userData = [];
+                    function makesArray() {
+                        userData.push(Number(document.getElementById('userFields').value));
+                        console.log(userData);
+                    }
+            
+                    //1.3
+                    let dataUser1 = [1, 5, 8, 9, 10];
+                    let Odd = dataUser1.filter((el) => el % 2);
+                    console.log(Odd);
+            </code></pre>
+        </div>
+    </section>
+    <section>
+        <div>
+            <h3>Question 2</h3>
+            <p>Create a Class User with properties as name, age & email.
+                He can login and logout
+                Create another class Moderator which has all the features of User, plus additional functionality to Add
+                coins and remove coins.
+                Create one more class Admin which has all the features of Moderator plus additional features like add a
+                Course and delete a particular course for a user.</p>
+            <pre><code>
+                                        
+                    class User {
+                        constructor(name, age,email) {
+                        this.name = name;
+                        this.age = age;
+                        this.email = email;
+                        this.addCoin = 0;
+                        this.remCoin = 0;
+                        this.courses = [];
+                        }
+
+                        static greet(){
+                            console.log("Initial");
+                        }
+
+                        login(){
+                            console.log(`${this.name} has logged in`);
+                            return this;
+                        }
+                        logout(){
+                            console.log(`${this.name} has logged out`);
+                            return this;
+                        }
+                        addCoins(){
+                            this.addCoin++;
+                            console.log(`${this.name} has ${this.addCoin} coins`);
+                            return this;
+                        }
+                        removeCoins(){
+                            this.addCoin--;
+                            console.log(`${this.name} has ${this.remCoin} coins`);
+                            return this;
+                        }
+                        getDetails(){
+                            console.log(`Name is ${this.name}, email is ${this.email}`);
+                            return this;
+                        }
+
+                    }
+
+                    class Moderator extends User{
+                        constructor(name,age,email,role){
+                            super(name,age,email);
+                            this.role = role;
+                        }
+
+                        deleteUser(user){
+                            users = users.filter(u =>{
+                                return u.email != user.email; 
+                            })
+                        }
+
+                    }
+
+                    class Admin extends Moderator{
+                    addCourse(user,course){
+                        user.courses.push(course);
+                        
+                    }
+                    removeCourse(user,course){
+                        user.courses.pop(course);
+                    }
+                    }
+
+
+                    let user1 = new User('mathavan',20,'mad@gmail.com')
+                    let user2 = new User('kumar',34,'kumar@gmai.com')
+                    let mod = new Moderator('john',29,'john@gmail.com','Moderator');
+                    let admin = new Admin('riche',45,'riche@gmail.com');
+                    let users = [user1,user2,mod,admin];
+
+
+
+                    User.greet();
+                    admin.addCourse(user1,'Javascript');
+                    admin.addCourse(user1,'Python');
+                    admin.removeCourse(user1,'Python');
+
+                </code></pre>
+        </div>
+    </section>
+    <section>
+        <div>
+            <h3>Question 3</h3>
+            <p>Using promises/async await/fetch get the random todos from the json placeholder api. And log all the
+                completed todos to the console.
+                API Endpoint : https://jsonplaceholder.typicode.com/todos</p>
+
+                <pre><code>
+                    async function fetchUsers(endpoint) {
+                        const res = await fetch(endpoint);
+                        let data = await res.json();
+            
+                        data = data.map(user =>
+                            `The userId is ${user.userId} ,id is ${user.id},title is ${user.title} and status is ${user.completed}`);
+            
+            
+                        console.log(data);
+                    }
+            
+                    fetchUsers('https://jsonplaceholder.typicode.com/todos');
+                </code></pre>
+        </div>
+    </section>
+    <script>
+        //1.1
+        let dataUser = [-5, -1, 0, 1, 5, 8, 9, 10];
+        let Positive = dataUser.filter((el) => el > 0);
+        console.log(Positive);
+        //1.2
+        let userData = [];
+        function makesArray() {
+            userData.push(Number(document.getElementById('userFields').value));
+            console.log(userData);
+        }
+
+        //1.3
+        let dataUser1 = [1, 5, 8, 9, 10];
+        let Odd = dataUser1.filter((el) => el % 2);
+        console.log(Odd);
+
+
+
+        //Second        
+
+        class User {
+            constructor(name, age, email) {
+                this.name = name;
+                this.age = age;
+                this.email = email;
+                this.addCoin = 0;
+                this.remCoin = 0;
+                this.courses = [];
+            }
+
+            static greet() {
+                console.log("Initial");
+            }
+
+            login() {
+                console.log(`${this.name} has logged in`);
+                return this;
+            }
+            logout() {
+                console.log(`${this.name} has logged out`);
+                return this;
+            }
+            addCoins() {
+                this.addCoin++;
+                console.log(`${this.name} has ${this.addCoin} coins`);
+                return this;
+            }
+            removeCoins() {
+                this.addCoin--;
+                console.log(`${this.name} has ${this.remCoin} coins`);
+                return this;
+            }
+            getDetails() {
+                console.log(`Name is ${this.name}, email is ${this.email}`);
+                return this;
+            }
+
+        }
+
+        class Moderator extends User {
+            constructor(name, age, email, role) {
+                super(name, age, email);
+                this.role = role;
+            }
+
+            deleteUser(user) {
+                users = users.filter(u => {
+                    return u.email != user.email;
+                })
+            }
+
+        }
+
+        class Admin extends Moderator {
+            addCourse(user, course) {
+                user.courses.push(course);
+
+            }
+            removeCourse(user, course) {
+                user.courses.pop(course);
+            }
+        }
+
+
+        let user1 = new User('mathavan', 20, 'mad@gmail.com')
+        let user2 = new User('kumar', 34, 'kumar@gmai.com')
+        let mod = new Moderator('john', 29, 'john@gmail.com', 'Moderator');
+        let admin = new Admin('riche', 45, 'riche@gmail.com');
+        let users = [user1, user2, mod, admin];
+
+
+
+        User.greet();
+        admin.addCourse(user1, 'Javascript');
+        admin.addCourse(user1, 'Python');
+        admin.removeCourse(user1, 'Python');
+
+
+        async function fetchUsers(endpoint) {
+            const res = await fetch(endpoint);
+            let data = await res.json();
+
+            data = data.map(user =>
+                `The userId is ${user.userId} ,id is ${user.id},title is ${user.title} and status is ${user.completed}`);
+
+
+            console.log(data);
+        }
+
+        fetchUsers('https://jsonplaceholder.typicode.com/todos');
+
+    </script>
+</body>
+
+</html>
